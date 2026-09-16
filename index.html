@@ -5,6 +5,8 @@
 <title>Clypto — CryptoMarket AI 2.1</title>
 <link rel="stylesheet" href="css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 </head>
 <body>
 <header class="topbar"><div><div class="brand">🤖 Clypto</div><div class="subtitle">CryptoMarket AI 2.1 · pesquisa, sentimento e alertas</div></div><button id="refreshBtn">↻ Atualizar</button></header>
@@ -18,4 +20,7 @@
 <section class="panel"><div class="panel-title">Scanner de mercado</div><div id="scanner" class="scanner-empty">Clique em “Escanear mercado” para analisar os ativos.</div></section>
 <section class="panel"><div class="panel-title">Indicadores</div><div class="metrics"><div><span>SMA 20</span><b id="sma20">—</b></div><div><span>SMA 50</span><b id="sma50">—</b></div><div><span>MACD</span><b id="macd">—</b></div><div><span>Volatilidade</span><b id="volatility">—</b></div><div><span>Tendência</span><b id="trend">—</b></div></div></section>
 <section class="panel disclaimer"><b>Como o Clypto 2.1 funciona</b><p>O robô combina dados de mercado, indicadores técnicos, notícias recentes, análise de sentimento e um relatório gerado por IA. A versão não executa ordens nem faz custódia de ativos. As análises são informativas e não constituem recomendação financeira.</p></section>
-</main><script src="js/app.js"></script></body></html>
+</main>
+<script src="js/firebase-init.js"></script>
+<script src="js/app.js"></script>
+</body></html>

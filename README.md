@@ -1,38 +1,36 @@
-# CryptoMarket AI
+# Clypto — CryptoMarket AI 2.0
 
-MVP de um robô de pesquisa e análise técnica de criptomoedas.
+Dashboard web para pesquisa e análise técnica de criptomoedas.
 
-## O que já funciona
-- Preço e variação de 24h
-- Volume
-- Histórico de candles
-- Gráfico
-- SMA 20 e SMA 50
-- RSI 14
-- MACD
-- Volatilidade
-- Leitura automática de tendência
-- Interface responsiva para celular
+## 2.0 — o que foi adicionado
+- Scanner automático de 10 ativos: BTC, ETH, SOL, BNB, XRP, ADA, DOGE, AVAX, LINK e DOT.
+- Score técnico de 0 a 6 baseado em preço vs. SMA20/SMA50, cruzamento de médias, RSI, MACD e volume.
+- Tabela comparativa do scanner.
+- Leitura técnica individual com gráfico.
+- Interface responsiva para celular.
+- Código separado em `index.html`, `css/style.css` e `js/app.js`.
+- Branch de desenvolvimento: `v2.0-scanner`.
+
+## Fonte de dados
+A versão 2.0 usa a API pública da Binance diretamente no navegador para ticker de 24h e candles. Não há execução de ordens nem custódia de ativos.
 
 ## Como executar
-Abra `index.html` em um navegador moderno. Para evitar restrições de CORS em alguns ambientes, prefira servir a pasta com um servidor local, por exemplo:
+Sirva a pasta com um servidor local, por exemplo:
 
-`python -m http.server 8080`
+```bash
+python -m http.server 8080
+```
 
-Depois acesse `http://localhost:8080`.
+Abra `http://localhost:8080`.
 
-## Próxima etapa: pesquisa de mercado com IA
-Para transformar este MVP em um robô completo, adicione um backend (Firebase Functions, Node.js ou similar) para:
-1. coletar notícias;
-2. normalizar fontes;
-3. classificar sentimento;
-4. armazenar histórico;
-5. criar alertas;
-6. gerar relatórios com IA;
-7. autenticar usuários.
-
-## Firebase
-O projeto ainda não coloca chaves Firebase no código. Isso é intencional: as credenciais devem ser configuradas no seu próprio projeto e as regras do Firestore devem ser definidas antes de armazenar dados de usuários.
+## Próxima fase
+- Backend/Firebase Functions para tarefas agendadas.
+- Cache e histórico no Firestore.
+- Notícias e classificação de sentimento.
+- Alertas personalizados.
+- Autenticação e favoritos.
+- Relatórios gerados por IA.
+- Testes automatizados e tratamento de limites de API.
 
 ## Aviso
-Dados de mercado podem atrasar, falhar ou sofrer alterações. Indicadores técnicos não garantem resultados. O aplicativo é uma ferramenta informativa e não substitui aconselhamento financeiro profissional.
+Indicadores técnicos são ferramentas de análise e não garantem resultados. O Clypto é informativo e não constitui recomendação financeira.

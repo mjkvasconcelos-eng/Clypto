@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CryptoMarket AI</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">🤖 CryptoMarket AI</div>
+      <div class="subtitle">Pesquisa de mercado e análise técnica de criptomoedas</div>
+    </div>
+    <button id="refreshBtn">Atualizar</button>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <label>Ativo
+        <select id="symbol">
+          <option>BTCUSDT</option>
+          <option>ETHUSDT</option>
+          <option>SOLUSDT</option>
+          <option>BNBUSDT</option>
+          <option>XRPUSDT</option>
+          <option>ADAUSDT</option>
+          <option>DOGEUSDT</option>
+          <option>AVAXUSDT</option>
+        </select>
+      </label>
+      <label>Intervalo
+        <select id="interval">
+          <option value="1h">1 hora</option>
+          <option value="4h">4 horas</option>
+          <option value="1d" selected>1 dia</option>
+        </select>
+      </label>
+      <button id="analyzeBtn" class="primary">Analisar</button>
+    </section>
+
+    <section class="grid cards">
+      <article class="card"><span>Preço</span><strong id="price">—</strong></article>
+      <article class="card"><span>24h</span><strong id="change">—</strong></article>
+      <article class="card"><span>Volume 24h</span><strong id="volume">—</strong></article>
+      <article class="card"><span>RSI</span><strong id="rsi">—</strong></article>
+    </section>
+
+    <section class="grid two">
+      <article class="panel">
+        <div class="panel-title">Gráfico</div>
+        <canvas id="priceChart"></canvas>
+      </article>
+      <article class="panel">
+        <div class="panel-title">Leitura do robô</div>
+        <div id="signal" class="signal neutral">Aguardando análise...</div>
+        <div id="report" class="report"></div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">Indicadores</div>
+      <div class="metrics">
+        <div><span>SMA 20</span><b id="sma20">—</b></div>
+        <div><span>SMA 50</span><b id="sma50">—</b></div>
+        <div><span>MACD</span><b id="macd">—</b></div>
+        <div><span>Volatilidade</span><b id="volatility">—</b></div>
+        <div><span>Tendência</span><b id="trend">—</b></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">Pesquisa de mercado</div>
+      <div class="research">
+        <div><b>O que este MVP pesquisa?</b><p>Preço, volume, histórico e indicadores técnicos. A camada de notícias/sentimento fica preparada para receber uma API no backend.</p></div>
+        <div><b>Como interpretar</b><p>O relatório combina tendência, RSI, MACD e volume. Ele não é recomendação financeira e não garante resultados.</p></div>
+      </div>
+    </section>
+
+    <p id="status" class="status"></p>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

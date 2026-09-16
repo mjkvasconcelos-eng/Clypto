@@ -30,22 +30,16 @@ jobs:
         working-directory: functions
         run: npm ci
 
-      - name: Deploy Hosting and Functions
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Write Firebase service account
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_ID: clypto-adf95
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLYPTO_ADF95 }}
-          projectId: clypto-adf95
-          channelId: live
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLYPTO_ADF95 }}
+        run: printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-service-account.json"
 
-      - name: Deploy Firestore rules
-        run: npx firebase-tools@latest deploy --only firestore:rules --project clypto-adf95
+      - name: Deploy Hosting, Functions and Firestore rules
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-service-account.json
-        shell: bash
-        run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLYPTO_ADF95 }}' > "$RUNNER_TEMP/firebase-service-account.json"
-          npx firebase-tools@latest deploy --only firestore:rules --project clypto-adf95
+        run: npx firebase-tools@latest deploy --project clypto-adf95 --only hosting,functions,firestore:rules
+
+      - name: Clean service account
+        if: always()
+        run: rm -f "$RUNNER_TEMP/firebase-service-account.json"

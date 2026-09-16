@@ -1,0 +1,43 @@
+name: Deploy Clypto to Firebase
+
+on:
+  push:
+    branches:
+      - main
+      - v2.1-functional-panel
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build and deploy Firebase
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Functions dependencies
+        working-directory: functions
+        run: npm install
+
+      - name: Write Firebase service account
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLYPTO_ADF95 }}
+        run: printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-service-account.json"
+
+      - name: Deploy Hosting, Functions and Firestore rules
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-service-account.json
+        run: npx firebase-tools@latest deploy --project clypto-adf95 --only hosting,functions,firestore:rules
+
+      - name: Clean service account
+        if: always()
+        run: rm -f "$RUNNER_TEMP/firebase-service-account.json"

@@ -23,3 +23,8 @@ window.clyptoGetToken = async function () {
   if (!auth.currentUser) await auth.signInAnonymously();
   return auth.currentUser.getIdToken();
 };
+
+const analyticsScript = document.createElement('script');
+analyticsScript.src = 'js/analytics.js';
+analyticsScript.defer = true;
+document.head.appendChild(analyticsScript);

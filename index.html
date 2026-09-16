@@ -1,86 +1,19 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>CryptoMarket AI</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clypto — CryptoMarket AI 2.0</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div>
-      <div class="brand">🤖 CryptoMarket AI</div>
-      <div class="subtitle">Pesquisa de mercado e análise técnica de criptomoedas</div>
-    </div>
-    <button id="refreshBtn">Atualizar</button>
-  </header>
-
-  <main class="container">
-    <section class="controls">
-      <label>Ativo
-        <select id="symbol">
-          <option>BTCUSDT</option>
-          <option>ETHUSDT</option>
-          <option>SOLUSDT</option>
-          <option>BNBUSDT</option>
-          <option>XRPUSDT</option>
-          <option>ADAUSDT</option>
-          <option>DOGEUSDT</option>
-          <option>AVAXUSDT</option>
-        </select>
-      </label>
-      <label>Intervalo
-        <select id="interval">
-          <option value="1h">1 hora</option>
-          <option value="4h">4 horas</option>
-          <option value="1d" selected>1 dia</option>
-        </select>
-      </label>
-      <button id="analyzeBtn" class="primary">Analisar</button>
-    </section>
-
-    <section class="grid cards">
-      <article class="card"><span>Preço</span><strong id="price">—</strong></article>
-      <article class="card"><span>24h</span><strong id="change">—</strong></article>
-      <article class="card"><span>Volume 24h</span><strong id="volume">—</strong></article>
-      <article class="card"><span>RSI</span><strong id="rsi">—</strong></article>
-    </section>
-
-    <section class="grid two">
-      <article class="panel">
-        <div class="panel-title">Gráfico</div>
-        <canvas id="priceChart"></canvas>
-      </article>
-      <article class="panel">
-        <div class="panel-title">Leitura do robô</div>
-        <div id="signal" class="signal neutral">Aguardando análise...</div>
-        <div id="report" class="report"></div>
-      </article>
-    </section>
-
-    <section class="panel">
-      <div class="panel-title">Indicadores</div>
-      <div class="metrics">
-        <div><span>SMA 20</span><b id="sma20">—</b></div>
-        <div><span>SMA 50</span><b id="sma50">—</b></div>
-        <div><span>MACD</span><b id="macd">—</b></div>
-        <div><span>Volatilidade</span><b id="volatility">—</b></div>
-        <div><span>Tendência</span><b id="trend">—</b></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-title">Pesquisa de mercado</div>
-      <div class="research">
-        <div><b>O que este MVP pesquisa?</b><p>Preço, volume, histórico e indicadores técnicos. A camada de notícias/sentimento fica preparada para receber uma API no backend.</p></div>
-        <div><b>Como interpretar</b><p>O relatório combina tendência, RSI, MACD e volume. Ele não é recomendação financeira e não garante resultados.</p></div>
-      </div>
-    </section>
-
-    <p id="status" class="status"></p>
-  </main>
-
-  <script src="js/app.js"></script>
-</body>
-</html>
+<header class="topbar"><div><div class="brand">🤖 Clypto</div><div class="subtitle">CryptoMarket AI 2.0 · scanner e análise de mercado</div></div><button id="refreshBtn">↻ Atualizar</button></header>
+<main class="container">
+<section class="hero"><div><span class="eyebrow">SCANNER AUTOMÁTICO</span><h1>Visão técnica do mercado cripto</h1><p>Compare ativos, indicadores e volume em uma única tela.</p></div><div class="updated" id="status">Carregando...</div></section>
+<section class="controls"><label>Ativo<select id="symbol"><option>BTCUSDT</option><option>ETHUSDT</option><option>SOLUSDT</option><option>BNBUSDT</option><option>XRPUSDT</option><option>ADAUSDT</option><option>DOGEUSDT</option><option>AVAXUSDT</option><option>LINKUSDT</option><option>DOTUSDT</option></select></label><label>Intervalo<select id="interval"><option value="1h">1 hora</option><option value="4h">4 horas</option><option value="1d" selected>1 dia</option></select></label><button id="analyzeBtn" class="primary">Analisar ativo</button><button id="scanBtn">🔎 Escanear mercado</button></section>
+<section class="grid cards"><article class="card"><span>Preço</span><strong id="price">—</strong></article><article class="card"><span>24h</span><strong id="change">—</strong></article><article class="card"><span>Volume 24h</span><strong id="volume">—</strong></article><article class="card"><span>RSI 14</span><strong id="rsi">—</strong></article></section>
+<section class="grid two"><article class="panel"><div class="panel-title">Preço e tendência</div><canvas id="priceChart"></canvas></article><article class="panel"><div class="panel-title">Leitura do robô</div><div id="signal" class="signal neutral">Aguardando análise...</div><div id="report" class="report"></div></article></section>
+<section class="panel"><div class="panel-title">Scanner de mercado</div><div id="scanner" class="scanner-empty">Clique em “Escanear mercado” para analisar os ativos.</div></section>
+<section class="panel"><div class="panel-title">Indicadores</div><div class="metrics"><div><span>SMA 20</span><b id="sma20">—</b></div><div><span>SMA 50</span><b id="sma50">—</b></div><div><span>MACD</span><b id="macd">—</b></div><div><span>Volatilidade</span><b id="volatility">—</b></div><div><span>Tendência</span><b id="trend">—</b></div></div></section>
+<section class="panel disclaimer"><b>Como o Clypto funciona</b><p>O sistema cruza preço, volume, RSI, médias móveis, MACD e volatilidade para produzir uma leitura técnica. Esta versão não executa ordens e não constitui recomendação financeira.</p></section>
+</main><script src="js/app.js"></script></body></html>
